@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-title">Lista de Estúdios</div>
+    <div class="row">
+      <div class="col-12">
+        <label for="id">Código</label>
+      </div>
+      <div class="col-12">
+        <input id="id" type="number"
+               [disabled]="editar"
+               [(ngModel)]="estudio.id"/>
+      </div>
+      <div class="col-12">
+        <label for="nome">Nome</label>
+      </div>
+      <div class="col-12">
+        <input id="nome" type="text" [(ngModel)]="estudio.nome"/>
+      </div>
+      <div class="col-12">
+        <label for="pais">País</label>
+      </div>
+      <div class="col-12">
+        <input id="pais" type="text" [(ngModel)]="estudio.pais"/>
+      </div>
+      <div class="col-12">
+        <label for="quantidadeFilmes">Quantidade de Filmes</label>
+      </div>
+      <div class="col-12">
+        <input id="quantidadeFilmes" type="number" [(ngModel)]="estudio.quantidadeFilmes"/>
+      </div>
+      <div class="col-12">
+        <button (click)="adicionar()">{{editar ? 'Editar' : 'Adicionar'}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,7 @@
+<nav class="nav">
+  <ng-container *ngFor="let menu of menuList">
+    <a class="nav-link" [routerLink]="menu.rota">
+      <i *ngIf="menu.icone" class="fas {{ menu.icone }}"></i> {{menu?.descricao}}
+    </a>
+  </ng-container>
+</nav>

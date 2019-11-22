@@ -1,0 +1,64 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-title">Lista de Filmes</div>
+    <div class="row">
+      <div class="col-12">
+        <label for="id">Código</label>
+      </div>
+      <div class="col-12">
+        <input id="id" type="number"
+               [disabled]="editar"
+               [(ngModel)]="filme.id"/>
+      </div>
+      <div class="col-12">
+        <label for="titulo">Título</label>
+      </div>
+      <div class="col-12">
+        <input id="titulo" type="text" [(ngModel)]="filme.titulo"/>
+      </div>
+      <div class="col-12">
+        <label for="dataLancamento">Data de Lançamento</label>
+      </div>
+      <div class="col-12">
+        <input id="dataLancamento" type="text" [(ngModel)]="filme.dataLancamento"/>
+      </div>
+      <div class="col-12">
+        <label for="genero">Gênero</label>
+      </div>
+      <div class="col-12">
+        <input id="genero" type="text" [(ngModel)]="filme.genero"/>
+      </div>
+<!--      <p-multiSelect [options]="estudio" [(ngModel)]="estudio.nome"></p-multiSelect>-->
+      <div class="col-12">
+        <label for="classificacao">Classificação</label>
+      </div>
+      <div class="col-12">
+        <input id="classificacao" type="text" [(ngModel)]="filme.classificacao"/>
+      </div>
+      <div class="col-12">
+        <label for="precoBilhete">Preço do Bilhete</label>
+      </div>
+      <div class="col-12">
+        <input id="precoBilhete" type="text" [(ngModel)]="filme.precoBilhete"/>
+      </div>
+<!--      <div class="col-12">-->
+<!--        <label for="inativo">Inativo</label>-->
+<!--      </div>-->
+<!--      <div class="col-12">-->
+<!--        <input id="inativo" type="text" [(ngModel)]="filme.inativo"/>-->
+<!--      </div>-->
+<!--      <div class="col-12">-->
+<!--        <label for="dub-leg">Dub / Leg</label>-->
+<!--      </div>-->
+<!--      <div class="col-12">-->
+<!--        <input id="dub-leg" type="text" [(ngModel)]="filme.dublado"/>-->
+<!--      </div>-->
+      <div class="col-12">
+        <button (click)="adicionar()">{{editar ? 'Editar' : 'Adicionar'}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

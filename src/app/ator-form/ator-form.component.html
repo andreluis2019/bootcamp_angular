@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-title">Lista de Atores</div>
+    <div class="row">
+      <div class="col-12">
+        <label for="id">Código</label>
+      </div>
+      <div class="col-12">
+        <input id="id" type="number"
+               [disabled]="editar"
+               [(ngModel)]="ator.id"/>
+      </div>
+      <div class="col-12">
+        <label for="nome">Nome</label>
+      </div>
+      <div class="col-12">
+        <input id="nome" type="text" [(ngModel)]="ator.nome"/>
+      </div>
+      <div class="col-12">
+        <label for="idade">Idade</label>
+      </div>
+      <div class="col-12">
+        <input id="idade" type="number" [(ngModel)]="ator.idade"/>
+      </div>
+      <div class="col-12">
+        <button (click)="adicionar()">{{editar ? 'Editar' : 'Adicionar'}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

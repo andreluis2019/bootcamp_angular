@@ -1,0 +1,56 @@
+$verde: #008000;
+$azul: #0000FF;
+$amarelo: #FFFF00;
+$vermelho: #CF545F;
+
+::ng-deep .table {
+  color: black;
+  font-size: 0.8em;
+}
+
+.custobaixo {
+  background-color: $verde !important;
+  color: white;
+  &:hover {
+    background-color: darken($verde, 10) !important;
+  }
+}
+
+.custoregular {
+  background-color: $azul !important;
+  color: white;
+  &:hover {
+    background-color: lighten($azul, 20) !important;
+  }
+}
+
+.customedio {
+  background-color: $amarelo !important;
+  &:hover {
+    background-color: darken($amarelo, 10) !important;
+  }
+}
+
+.custoalto {
+  background-color: $vermelho !important;
+  font-weight: 600;
+  color: #FFFFFF;
+  &:hover {
+    background-color: darken($vermelho, 10) !important;
+  }
+}
+
+.inativo {
+  color: #BDCCCF;
+  background-color: white !important;
+}
+
+.zoom {
+  transform: scale(1);
+  &:hover {
+    transform: scale(1.05);
+    z-index: 5;
+  }
+  transition: 1s;
+}
+

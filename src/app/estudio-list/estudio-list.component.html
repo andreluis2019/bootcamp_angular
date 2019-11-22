@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-title">
+      Lista de Estúdios
+      (<a [routerLink]="'/estudio-form'">Cadastrar</a>)
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-dark">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">País</th>
+            <th scope="col">Quantidade de Filmes</th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let estudio of estudioList$ | async">
+            <tr [class.zoom]="estudio"
+                [style.fontSize.px]="20"
+                *ngIf="estudio">
+              <th scope="row">{{estudio.id}}</th>
+              <td>{{estudio.nome}}</td>
+              <td>{{estudio.pais}}</td>
+              <td>{{estudio.quantidadeFilmes}}</td>
+              <td>
+                <button (click)="editar(estudio)">Editar</button>
+
+                <button (click)="excluir(estudio)">Excluir</button>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+
+        <div *ngIf="estudioParaEditar != null" class="col-12">
+          <app-estudio-form [estudio]="estudioParaEditar"
+                         (onPersist)="atualizarRegistros()"
+                         [editar]="true">
+          </app-estudio-form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

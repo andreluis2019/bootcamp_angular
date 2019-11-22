@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-title">
+      Lista de Filmes
+      (<a [routerLink]="'/filme-form'">Cadastrar</a>)
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Data de Lançamento</th>
+            <th scope="col">Gênero</th>
+            <th scope="col">Classificação</th>
+            <th class="text-right" scope="col">Preço Bilhete</th>
+<!--            <th class="text-center" scope="col">Inativo</th>-->
+<!--            <th class="text-center" scope="col">Dub / Leg</th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let filme of filmeList$ | async">
+            <tr [class.custobaixo]="filme.precoBilhete <= 10"
+                [class.custoregular]="filme.precoBilhete > 10 && filme.precoBilhete < 20"
+                [class.customedio]="filme.precoBilhete >= 20 && filme.precoBilhete < 40"
+                [class.custoalto]="filme.precoBilhete >= 40"
+                [class.zoom]="filme"
+                (mouseenter)="setTitle(filme)"
+                [title]="toolTip"
+                [style.fontSize.px]="20"
+                *ngIf="filme">
+              <th scope="row">{{filme.id}}</th>
+              <td>{{filme.titulo}}</td>
+              <td>{{filme.dataLancamento | date: 'dd/MM/yyyy' }}</td>
+              <td>{{filme.genero}}</td>
+              <td>{{filme.classificacao}}</td>
+              <td class="text-right">{{filme.precoBilhete | currency: 'BRL'}} </td>
+<!--              <td class="text-center">{{filme.inativo | inativo}} </td>-->
+<!--              <td class="text-center">{{filme.dublado | dublado}} </td>-->
+              <td>
+                <button (click)="editar(filme)">Editar</button>
+
+                <button (click)="excluir(filme)">Excluir</button>
+              </td>
+            </tr>
+          </ng-container>
+          <tr>
+            <td><label>Qtde filmes: </label> {{size() | async}}</td>
+            <td colspan="3"></td>
+            <td><label>Valor total: </label></td>
+            <td class="text-right"> {{getTotal() | async | currency: 'BRL'}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div *ngIf="filmeParaEditar != null" class="col-12">
+          <app-filme-form [filme]="filmeParaEditar"
+                            (onPersist)="atualizarRegistro()"
+                            [editar]="true">
+          </app-filme-form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
