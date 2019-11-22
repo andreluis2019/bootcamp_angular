@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Ator} from '../model/Ator';
 import {AtorService} from '../service/ator.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-ator-form',
@@ -17,7 +17,19 @@ export class AtorFormComponent {
   @Output() onPersist = new EventEmitter<void>();
 
   constructor(private atorService: AtorService,
-              private router: Router) { }
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe(p => {
+        const id = p['id'];
+        if (id) {
+          this.atorService.get(id).subscribe(res => {
+            this.ator = res;
+            this.editar = true;
+          });
+        }
+      }
+    )
+  }
 
   adicionar(): void {
     if (this.editar) {

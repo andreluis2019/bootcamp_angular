@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Estudio} from '../model/Estudio';
 import {EstudioService} from '../service/estudio.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-estudio-form',
@@ -17,7 +17,19 @@ export class EstudioFormComponent {
   @Output() onPersist = new EventEmitter<void>();
 
   constructor(private estudioService: EstudioService,
-              private router: Router) { }
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe(p => {
+    const id = p['id'];
+    if (id) {
+      this.estudioService.get(id).subscribe(res => {
+      this.estudio = res;
+      this.editar = true;
+    });
+  }
+}
+)
+}
 
   adicionar(): void {
     if (this.editar) {

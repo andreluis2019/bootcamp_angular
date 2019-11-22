@@ -44,4 +44,14 @@ export class EstudioService {
     this.estudioList = [];
     localStorage.removeItem(this.KEY_ESTUDIOS);
   }
+
+  get(id: number): Observable<Estudio> {
+    return new Observable((observer) => {
+      this.findAll().subscribe(res => {
+        const estudio = res.find(a => a.id == id);
+        observer.next(estudio);
+        observer.complete();
+      });
+    });
+  }
 }

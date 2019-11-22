@@ -20,7 +20,8 @@
         <label for="dataLancamento">Data de Lançamento</label>
       </div>
       <div class="col-12">
-        <input id="dataLancamento" type="text" [(ngModel)]="filme.dataLancamento"/>
+        <p-calendar id="dataLancamento" [(ngModel)]="filme.dataLancamento" dateFormat="dd/mm/yy" dataType="string"></p-calendar>
+<!--        <p-calendar id="dataLancamento" [(ngModel)]="filme.dataLancamento"></p-calendar>-->
       </div>
       <div class="col-12">
         <label for="genero">Gênero</label>
@@ -28,12 +29,17 @@
       <div class="col-12">
         <input id="genero" type="text" [(ngModel)]="filme.genero"/>
       </div>
-<!--      <p-multiSelect [options]="estudio" [(ngModel)]="estudio.nome"></p-multiSelect>-->
       <div class="col-12">
-        <label for="classificacao">Classificação</label>
+        <label for="atores">Atores</label>
       </div>
       <div class="col-12">
-        <input id="classificacao" type="text" [(ngModel)]="filme.classificacao"/>
+        <p-multiSelect id="atores" [options]="atorList" [(ngModel)]="filme.atorList" optionLabel="nome"></p-multiSelect>
+      </div>
+      <div class="col-12">
+        <label for="estudio">Estúdio</label>
+      </div>
+      <div class="col-12">
+        <p-dropdown id="estudio" [options]="estudioList" [(ngModel)]="filme.estudio" optionLabel="nome"></p-dropdown>
       </div>
       <div class="col-12">
         <label for="precoBilhete">Preço do Bilhete</label>

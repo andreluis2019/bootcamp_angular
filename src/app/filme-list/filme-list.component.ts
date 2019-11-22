@@ -79,118 +79,121 @@ export class FilmeListComponent implements OnInit {
   }
 
   private gerarFilmes() {
-    const filme = new Filme();
-    filme.id = 1;
-    filme.titulo = 'Star Wars';
-    filme.dataLancamento = new Date(1988, 3, 15);
-    filme.precoBilhete = 20.1;
-    filme.genero = 'Ficção';
-    filme.classificacao = ClassificacaoEnum.ADULTO;
-    filme.inativo = false;
-    filme.dublado = true;
-    this.filmeService.add(filme);
+    this.filmeService.size().subscribe(size => {
+        if (size === 0) {
+          const filme = new Filme();
+          filme.id = 1;
+          filme.titulo = 'Star Wars';
+          filme.precoBilhete = 20.1;
+          filme.genero = 'Ficção';
+          filme.classificacao = ClassificacaoEnum.ADULTO;
+          filme.inativo = false;
+          filme.dublado = true;
+          this.filmeService.add(filme);
 
 
-    const filme2 = new Filme();
-    filme2.id = 2;
-    filme2.titulo = 'Avengers Endgame';
-    filme2.dataLancamento = new Date(2019, 3, 25);
-    filme2.precoBilhete = 40.5;
-    filme2.genero = 'Aventura';
-    filme2.classificacao = ClassificacaoEnum.ADULTO;
-    filme2.inativo = true;
-    filme2.dublado = false;
-    this.filmeService.add(filme2);
+          const filme2 = new Filme();
+          filme2.id = 2;
+          filme2.titulo = 'Avengers Endgame';
+          filme2.precoBilhete = 40.5;
+          filme2.genero = 'Aventura';
+          filme2.classificacao = ClassificacaoEnum.ADULTO;
+          filme2.inativo = true;
+          filme2.dublado = false;
+          this.filmeService.add(filme2);
 
-    // const filme3 = new Filme();
-    // filme3.id = 3;
-    // filme3.titulo = 'Homem de Ferro';
-    // filme3.dataLancamento = new Date(2019, 3, 25);
-    // filme3.precoBilhete = 10;
-    // filme3.genero = 'Comédia';
-    // filme3.classificacao = ClassificacaoEnum.ADOLESCENTE;
-    // filme3.inativo = false;
-    // filme3.dublado = true;
-    // this.filmeService.add(filme3);
-    //
-    // const filme4 = new Filme();
-    // filme4.id = 4;
-    // filme4.titulo = 'Capitão América';
-    // filme4.dataLancamento = new Date(2019, 3, 25);
-    // filme4.precoBilhete = 20;
-    // filme4.genero = 'Ação';
-    // filme4.classificacao = ClassificacaoEnum.ADOLESCENTE;
-    // filme4.inativo = false;
-    // filme4.dublado = false;
-    // this.filmeService.add(filme4);
-    //
-    // const filme5 = new Filme();
-    // filme5.id = 5;
-    // filme5.titulo = 'Liga da Justiça';
-    // filme5.dataLancamento = new Date(2019, 3, 25);
-    // filme5.precoBilhete = 15;
-    // filme5.genero = 'Ação';
-    // filme5.classificacao = ClassificacaoEnum.ADOLESCENTE;
-    // filme5.inativo = false;
-    // filme5.dublado = false;
-    // this.filmeService.add(filme5);
-    //
-    // const filme6 = new Filme();
-    // filme6.id = 6;
-    // filme6.titulo = 'Mulher Maravilha';
-    // filme6.dataLancamento = new Date(2019, 3, 25);
-    // filme6.precoBilhete = 30;
-    // filme6.genero = 'Aventura';
-    // filme6.classificacao = ClassificacaoEnum.INFANTIL;
-    // filme6.inativo = false;
-    // filme6.dublado = false;
-    // this.filmeService.add(filme6);
-    //
-    // const filme7 = new Filme();
-    // filme7.id = 7;
-    // filme7.titulo = 'Joker';
-    // filme7.dataLancamento = new Date(2019, 3, 25);
-    // filme7.precoBilhete = 45;
-    // filme7.genero = 'Aventura';
-    // filme7.classificacao = ClassificacaoEnum.ADULTO;
-    // filme7.inativo = false;
-    // filme7.dublado = false;
-    // this.filmeService.add(filme7);
-    //
-    // const filme8 = new Filme();
-    // filme8.id = 8;
-    // filme8.titulo = 'Homem Aranha';
-    // filme8.dataLancamento = new Date(2019, 3, 25);
-    // filme8.precoBilhete = 25.4;
-    // filme8.genero = 'Comédia';
-    // filme8.classificacao = ClassificacaoEnum.INFANTIL;
-    // filme8.inativo = false;
-    // filme8.dublado = false;
-    // this.filmeService.add(filme8);
-    //
-    // const filme9 = new Filme();
-    // filme9.id = 9;
-    // filme9.titulo = 'Thor';
-    // filme9.dataLancamento = new Date(2019, 3, 25);
-    // filme9.precoBilhete = 18;
-    // filme9.genero = 'Aventura';
-    // filme9.classificacao = ClassificacaoEnum.ADOLESCENTE;
-    // filme9.inativo = false;
-    // filme9.dublado = false;
-    // this.filmeService.add(filme9);
-    //
-    // const filme10 = new Filme();
-    // filme10.id = 10;
-    // filme10.titulo = 'Quarteto Fantástico';
-    // filme10.dataLancamento = new Date(2019, 3, 25);
-    // filme10.precoBilhete = 9.5;
-    // filme10.genero = 'Científico';
-    // filme10.classificacao = ClassificacaoEnum.INFANTIL;
-    // filme10.inativo = false;
-    // filme10.dublado = false;
-    // this.filmeService.add(filme10);
+          // const filme3 = new Filme();
+          // filme3.id = 3;
+          // filme3.titulo = 'Homem de Ferro';
+          // filme3.dataLancamento = new Date(2019, 3, 25);
+          // filme3.precoBilhete = 10;
+          // filme3.genero = 'Comédia';
+          // filme3.classificacao = ClassificacaoEnum.ADOLESCENTE;
+          // filme3.inativo = false;
+          // filme3.dublado = true;
+          // this.filmeService.add(filme3);
+          //
+          // const filme4 = new Filme();
+          // filme4.id = 4;
+          // filme4.titulo = 'Capitão América';
+          // filme4.dataLancamento = new Date(2019, 3, 25);
+          // filme4.precoBilhete = 20;
+          // filme4.genero = 'Ação';
+          // filme4.classificacao = ClassificacaoEnum.ADOLESCENTE;
+          // filme4.inativo = false;
+          // filme4.dublado = false;
+          // this.filmeService.add(filme4);
+          //
+          // const filme5 = new Filme();
+          // filme5.id = 5;
+          // filme5.titulo = 'Liga da Justiça';
+          // filme5.dataLancamento = new Date(2019, 3, 25);
+          // filme5.precoBilhete = 15;
+          // filme5.genero = 'Ação';
+          // filme5.classificacao = ClassificacaoEnum.ADOLESCENTE;
+          // filme5.inativo = false;
+          // filme5.dublado = false;
+          // this.filmeService.add(filme5);
+          //
+          // const filme6 = new Filme();
+          // filme6.id = 6;
+          // filme6.titulo = 'Mulher Maravilha';
+          // filme6.dataLancamento = new Date(2019, 3, 25);
+          // filme6.precoBilhete = 30;
+          // filme6.genero = 'Aventura';
+          // filme6.classificacao = ClassificacaoEnum.INFANTIL;
+          // filme6.inativo = false;
+          // filme6.dublado = false;
+          // this.filmeService.add(filme6);
+          //
+          // const filme7 = new Filme();
+          // filme7.id = 7;
+          // filme7.titulo = 'Joker';
+          // filme7.dataLancamento = new Date(2019, 3, 25);
+          // filme7.precoBilhete = 45;
+          // filme7.genero = 'Aventura';
+          // filme7.classificacao = ClassificacaoEnum.ADULTO;
+          // filme7.inativo = false;
+          // filme7.dublado = false;
+          // this.filmeService.add(filme7);
+          //
+          // const filme8 = new Filme();
+          // filme8.id = 8;
+          // filme8.titulo = 'Homem Aranha';
+          // filme8.dataLancamento = new Date(2019, 3, 25);
+          // filme8.precoBilhete = 25.4;
+          // filme8.genero = 'Comédia';
+          // filme8.classificacao = ClassificacaoEnum.INFANTIL;
+          // filme8.inativo = false;
+          // filme8.dublado = false;
+          // this.filmeService.add(filme8);
+          //
+          // const filme9 = new Filme();
+          // filme9.id = 9;
+          // filme9.titulo = 'Thor';
+          // filme9.dataLancamento = new Date(2019, 3, 25);
+          // filme9.precoBilhete = 18;
+          // filme9.genero = 'Aventura';
+          // filme9.classificacao = ClassificacaoEnum.ADOLESCENTE;
+          // filme9.inativo = false;
+          // filme9.dublado = false;
+          // this.filmeService.add(filme9);
+          //
+          // const filme10 = new Filme();
+          // filme10.id = 10;
+          // filme10.titulo = 'Quarteto Fantástico';
+          // filme10.dataLancamento = new Date(2019, 3, 25);
+          // filme10.precoBilhete = 9.5;
+          // filme10.genero = 'Científico';
+          // filme10.classificacao = ClassificacaoEnum.INFANTIL;
+          // filme10.inativo = false;
+          // filme10.dublado = false;
+          // this.filmeService.add(filme10);
 
-    // this.filmeService.remove(filme);
-    // this.filmeService.remove(filme2);
+          // this.filmeService.remove(filme);
+          // this.filmeService.remove(filme2);
+        }
+    }
+    )
   }
 }

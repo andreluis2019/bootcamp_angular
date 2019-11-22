@@ -32,7 +32,9 @@
                 *ngIf="filme">
               <th scope="row">{{filme.id}}</th>
               <td>{{filme.titulo}}</td>
-              <td>{{filme.dataLancamento | date: 'dd/MM/yyyy' }}</td>
+              <td>
+                {{filme.dataLancamento | date: 'dd/MM/yyyy' }}
+              </td>
               <td>{{filme.genero}}</td>
               <td>{{filme.classificacao}}</td>
               <td class="text-right">{{filme.precoBilhete | currency: 'BRL'}} </td>
@@ -40,6 +42,11 @@
 <!--              <td class="text-center">{{filme.dublado | dublado}} </td>-->
               <td>
                 <button (click)="editar(filme)">Editar</button>
+
+                <button [routerLink]="'/filme-form'"
+                        [queryParams]="{id: filme.id}">
+                  Editar Por Link
+                </button>
 
                 <button (click)="excluir(filme)">Excluir</button>
               </td>

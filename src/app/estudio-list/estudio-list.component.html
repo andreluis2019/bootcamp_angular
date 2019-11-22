@@ -27,6 +27,11 @@
               <td>
                 <button (click)="editar(estudio)">Editar</button>
 
+                <button [routerLink]="'/estudio-form'"
+                        [queryParams]="{id: estudio.id}">
+                  Editar Por Link
+                </button>
+
                 <button (click)="excluir(estudio)">Excluir</button>
               </td>
             </tr>

@@ -20,6 +20,8 @@ import { FilmeFormComponent } from './filme-form/filme-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
 import {MultiSelectModule} from 'primeng/multiselect';
+import {CalendarModule} from 'primeng/calendar';
+import {DropdownModule} from 'primeng/dropdown';
 
 registerLocaleData(localePt, 'pt');
 
@@ -35,7 +37,7 @@ registerLocaleData(localePt, 'pt');
     AtorFormComponent,
     EstudioListComponent,
     EstudioFormComponent,
-    FilmeFormComponent
+    FilmeFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,9 @@ registerLocaleData(localePt, 'pt');
     MultiSelectModule,
     ButtonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    CalendarModule,
+    DropdownModule
   ],
   providers: [
     {

@@ -54,4 +54,14 @@ export class FilmeService {
     this.filmeList = [];
     localStorage.removeItem(this.KEY_FILMES);
   }
+
+  get(id: number): Observable<Filme> {
+    return new Observable((observer) => {
+      this.findAll().subscribe(res => {
+        const filme = res.find(a => a.id == id);
+        observer.next(filme);
+        observer.complete();
+      });
+    });
+  }
 }

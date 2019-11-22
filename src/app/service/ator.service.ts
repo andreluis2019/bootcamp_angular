@@ -45,4 +45,14 @@ export class AtorService {
     this.atorList = [];
     localStorage.removeItem(this.KEY_ATORES);
   }
+
+  get(id: number): Observable<Ator> {
+    return new Observable((observer) => {
+      this.findAll().subscribe(res => {
+        const ator = res.find(a => a.id == id);
+        observer.next(ator);
+        observer.complete();
+      });
+    });
+  }
 }

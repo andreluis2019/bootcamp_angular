@@ -26,6 +26,11 @@
               <td>
                 <button (click)="editar(ator)">Editar</button>
 
+                <button [routerLink]="'/ator-form'"
+                        [queryParams]="{id: ator.id}">
+                  Editar Por Link
+                </button>
+
                 <button (click)="excluir(ator)">Excluir</button>
               </td>
             </tr>
