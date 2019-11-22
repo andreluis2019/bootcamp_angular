@@ -17,12 +17,14 @@ export class FilmeListComponent implements OnInit {
   toolTip = '';
   filmeParaEditar: Filme;
   valorTotalBilhetes = 0;
+  boolean: boolean;
 
   constructor(private filmeService: FilmeService,
               private titleService: Title) {
   }
 
   editar(filme: Filme): void {
+    this.boolean = true;
     this.filmeParaEditar = JSON.parse(JSON.stringify(filme));
   }
 

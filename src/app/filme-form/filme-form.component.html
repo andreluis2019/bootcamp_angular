@@ -14,13 +14,28 @@
         <label for="titulo">Título</label>
       </div>
       <div class="col-12">
-        <input id="titulo" type="text" [(ngModel)]="filme.titulo"/>
+        <input id="titulo" type="text"
+               required minlength="3"
+               [(ngModel)]="filme.titulo"
+               #titulo="ngModel"/>
       </div>
+
+      <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="titulo.errors.required">
+          Título é obrigatório.
+        </div>
+        <div *ngIf="titulo.errors.minlength">
+          Título precisa ter mais que 3 caracteres.
+        </div>
+      </div>
+
       <div class="col-12">
         <label for="dataLancamento">Data de Lançamento</label>
       </div>
       <div class="col-12">
-        <p-calendar id="dataLancamento" [(ngModel)]="filme.dataLancamento" dateFormat="dd/mm/yy" dataType="string"></p-calendar>
+        <p-calendar id="dataLancamento" appendTo="body" [(ngModel)]="filme.dataLancamento" dateFormat="dd/mm/yy" dataType="string"></p-calendar>
 <!--        <p-calendar id="dataLancamento" [(ngModel)]="filme.dataLancamento"></p-calendar>-->
       </div>
       <div class="col-12">
@@ -45,7 +60,18 @@
         <label for="precoBilhete">Preço do Bilhete</label>
       </div>
       <div class="col-12">
-        <input id="precoBilhete" type="text" [(ngModel)]="filme.precoBilhete"/>
+        <input id="precoBilhete" type="text"
+               required=""
+               [(ngModel)]="filme.precoBilhete"
+               #precoBilhete="ngModel"/>
+      </div>
+
+      <div *ngIf="precoBilhete.invalid && (precoBilhete.dirty || precoBilhete.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="precoBilhete.errors.required">
+          Preço é obrigatório.
+        </div>
       </div>
 <!--      <div class="col-12">-->
 <!--        <label for="inativo">Inativo</label>-->

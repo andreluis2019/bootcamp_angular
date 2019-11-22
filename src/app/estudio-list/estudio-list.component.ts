@@ -10,9 +10,9 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./estudio-list.component.scss']
 })
 export class EstudioListComponent implements OnInit {
-  estudioList$: Observable<Estudio[]>;
   estudioParaEditar: Estudio;
   boolean: boolean;
+  estudioList: Estudio[];
 
   constructor(private estudioService: EstudioService,
               private titleService: Title) {
@@ -28,19 +28,25 @@ export class EstudioListComponent implements OnInit {
   }
 
   atualizarRegistros(): void {
-    this.estudioList$ = this.estudioService.findAll();
+    this.estudioService.findAll().subscribe( res => {
+      this.estudioList = res;
+    })
     this.estudioParaEditar = null;
   }
 
   excluir(estudio: Estudio): void {
     this.estudioService.remove(estudio);
-    this.estudioList$ = this.estudioService.findAll();
+    this.estudioService.findAll().subscribe( res => {
+      this.estudioList = res;
+    })
   }
 
   ngOnInit() {
     this.titleService.setTitle('Cine BootCamp - Estúdios');
     this.gerarStudios();
-    this.estudioList$ = this.estudioService.findAll();
+    this.estudioService.findAll().subscribe( res => {
+      this.estudioList = res;
+    })
   }
 
   private gerarStudios(): void {

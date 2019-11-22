@@ -62,10 +62,14 @@
         </table>
 
         <div *ngIf="filmeParaEditar != null" class="col-12">
-          <app-filme-form [filme]="filmeParaEditar"
+          <p-dialog header="Editar Filme" [(visible)]="boolean" modal="true"
+                    [style]="{width: '300px', position: 'center'}">
+            <app-filme-form [filme]="filmeParaEditar"
                             (onPersist)="atualizarRegistro()"
                             [editar]="true">
-          </app-filme-form>
+            </app-filme-form>
+          </p-dialog>
+
         </div>
 
       </div>

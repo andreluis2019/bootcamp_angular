@@ -10,14 +10,19 @@ import {Observable} from 'rxjs';
   styleUrls: ['./ator-list.component.scss']
 })
 export class AtorListComponent implements OnInit {
-  atorList$: Observable<Ator[]>;
   atorParaEditar: Ator;
+  boolean: boolean;
+  atorList: Ator[];
 
   constructor(private atorService: AtorService,
               private titleService: Title) {
+    atorService.findAll().subscribe(ator => {
+      this.atorList = ator;
+    })
   }
 
   editar(ator: Ator): void {
+    this.boolean = true;
     this.atorParaEditar = JSON.parse(JSON.stringify(ator));
   }
 
@@ -26,14 +31,18 @@ export class AtorListComponent implements OnInit {
   }
 
   atualizarRegistros(): void {
-    this.atorList$ = this.atorService.findAll();
+    this.atorService.findAll().subscribe( res => {
+      this.atorList = res;
+    })
     this.atorParaEditar = null;
   }
 
   ngOnInit() {
     this.titleService.setTitle('Cine BootCamp - Atores');
     this.gerarAtors();
-    this.atorList$ = this.atorService.findAll();
+    this.atorService.findAll().subscribe( res => {
+      this.atorList = res;
+    })
   }
 
   private gerarAtors(): void {
@@ -86,6 +95,8 @@ export class AtorListComponent implements OnInit {
 
   excluir(ator: Ator): void {
     this.atorService.remove(ator);
-    this.atorList$ = this.atorService.findAll();
+    this.atorService.findAll().subscribe( res => {
+      this.atorList = res;
+    })
   }
 }
