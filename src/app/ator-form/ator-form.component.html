@@ -14,14 +14,40 @@
         <label for="nome">Nome</label>
       </div>
       <div class="col-12">
-        <input id="nome" type="text" [(ngModel)]="ator.nome"/>
+        <input id="nome" type="text"
+               required minlength="5"
+               [(ngModel)]="ator.nome" #nome="ngModel"/>
+      </div>
+
+      <div *ngIf="nome.invalid && (nome.dirty || nome.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nome.errors.required">
+          Nome é obrigatório.
+        </div>
+        <div *ngIf="nome.errors.minlength">
+          Nome precisa ser maior que 5 caracteres.
+        </div>
+
       </div>
       <div class="col-12">
         <label for="idade">Idade</label>
       </div>
       <div class="col-12">
-        <input id="idade" type="number" [(ngModel)]="ator.idade"/>
+        <input id="idade" type="number"
+               required=""
+               [(ngModel)]="ator.idade" #idade="ngModel"/>
       </div>
+
+      <div *ngIf="idade.invalid && (idade.dirty || idade.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="idade.errors.required">
+          Idade é obrigatória.
+        </div>
+
+      </div>
+
       <div class="col-12">
         <button (click)="adicionar()">{{editar ? 'Editar' : 'Adicionar'}}</button>
       </div>

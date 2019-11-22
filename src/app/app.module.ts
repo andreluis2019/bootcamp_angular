@@ -22,6 +22,7 @@ import {ButtonModule} from 'primeng/button';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
+import {DialogModule} from 'primeng/dialog';
 
 registerLocaleData(localePt, 'pt');
 
@@ -48,7 +49,8 @@ registerLocaleData(localePt, 'pt');
     FormsModule,
     RouterModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
+    DialogModule
   ],
   providers: [
     {

@@ -12,12 +12,14 @@ import {Title} from '@angular/platform-browser';
 export class EstudioListComponent implements OnInit {
   estudioList$: Observable<Estudio[]>;
   estudioParaEditar: Estudio;
+  boolean: boolean;
 
   constructor(private estudioService: EstudioService,
               private titleService: Title) {
   }
 
   editar(estudio: Estudio): void {
+    this.boolean = true;
     this.estudioParaEditar = JSON.parse(JSON.stringify(estudio));
   }
 
