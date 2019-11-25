@@ -13,6 +13,9 @@ export class EstudioListComponent implements OnInit {
   estudioParaEditar: Estudio;
   boolean: boolean;
   estudioList: Estudio[];
+  cols: any[];
+  nomeFilter: string;
+  nomeTimeOut: any;
 
   constructor(private estudioService: EstudioService,
               private titleService: Title) {
@@ -47,6 +50,13 @@ export class EstudioListComponent implements OnInit {
     this.estudioService.findAll().subscribe( res => {
       this.estudioList = res;
     })
+
+    this.cols = [
+      { field: 'id', header: 'Id' },
+      { field: 'nome', header: 'Nome' },
+      { field: 'pais', header: 'País' },
+      { field: 'quantidadeFilmes', header: 'Quantidade de Filmes' }
+    ];
   }
 
   private gerarStudios(): void {
@@ -66,6 +76,15 @@ export class EstudioListComponent implements OnInit {
       }
       }
     )
+  }
+  onNomeChange(event, dt) {
+    if (this.nomeTimeOut) {
+      clearTimeout(this.nomeTimeOut);
+    }
+
+    this.nomeTimeOut = setTimeout(() => {
+      dt.filter(event.value, 'year', 'gt');
+    }, 250);
   }
 
 }

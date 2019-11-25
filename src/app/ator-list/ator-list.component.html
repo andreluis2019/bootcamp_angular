@@ -7,6 +7,7 @@
     <div class="row">
       <div class="col-12">
         <p-table #dt class="table table-dark" [value]="atorList" [paginator]="true" [rows]="2" [responsive]="true">
+          <!--Código para deixar responsivo [responsive]="true"-->
           <ng-template pTemplate="caption">
             <div style="text-align: right">
               <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -16,11 +17,13 @@
           <ng-template pTemplate="header" let-columns>
             <tr>
               <th scope="col" >#</th>
-              <th
-                scope="col" pSortableColumn="nome">Nome
+              <th scope="col" pSortableColumn="nome">
                 <p-sortIcon field="nome"></p-sortIcon>
+                  Nome
               </th>
-              <th scope="col">Idade</th>
+              <th scope="col" pSortableColumn="idade">Idade <!--Código para permitir ordenar-->
+                <p-sortIcon field="idade"></p-sortIcon> <!--Código para permitir ordenar-->
+              </th>
               <th scope="col">Ações</th>
             </tr>
           </ng-template>
@@ -29,6 +32,7 @@
                   [style.fontSize.px]="20"
                   *ngIf="ator">
                 <th scope="row">{{ator.id}}</th>
+<!--                Código para permitir editar campos-->
                 <td pEditableColumn>
                   <p-cellEditor>
                     <ng-template pTemplate="input">
@@ -39,7 +43,16 @@
                     </ng-template>
                   </p-cellEditor>
                 </td>
-                <td>{{ator.idade}}</td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="number" [(ngModel)]="ator.idade">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{ator.idade}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
                 <td>
                   <button (click)="editar(ator)">Editar</button>
 

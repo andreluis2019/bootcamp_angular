@@ -7,32 +7,67 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <p-table class="table table-dark" [value]="estudioList" [paginator]="true" [rows]="2">
+        <p-table #dt [columns]="cols" [value]="estudioList" class="table table-dark"
+                 [paginator]="true" [rows]="2" [responsive]="true">
+          <ng-template pTemplate="caption">
+            <div style="text-align: right">
+              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+              <input type="text" pInputText size="50" placeholder="Global Filter"
+                     (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+            </div>
+          </ng-template>
           <ng-template pTemplate="header" let-columns>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome</th>
-              <th scope="col">País</th>
-              <th scope="col">Quantidade de Filmes</th>
+              <th *ngFor="let col of columns">
+                {{col.header}}
+              </th>
+<!--              <th scope="col">#</th>-->
+<!--              <th scope="col">Nome</th>-->
+<!--              <th scope="col">País</th>-->
+<!--              <th scope="col">Quantidade de Filmes</th>-->
+            </tr>
+            <tr>
+              <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                <input *ngSwitchCase="'nome'" pInputText type="text"
+                       (input)="dt.filter($event.target.value, col.field, 'contains')">
+                <div *ngSwitchCase="'nome'">
+                  <i class="fa fa-close" (click)="nomeFilter=null;dt.filter(null,
+                  col.field, col.filterMatchMode)" style="cursor:pointer" *ngIf="nomeFilter"></i>
+<!--                  <p-slider [style]="{'width':'100%','margin-top':'8px'}" [(ngModel)]="nomeFilter"-->
+<!--                            (onChange)="onNomeChange($event, dt)">-->
+<!--                  </p-slider>-->
+                </div>
+<!--                <p-dropdown *ngSwitchCase="'pais'" [style]="{'width':'100%'}"-->
+<!--                            (onChange)="dt.filter($event.value, col.field, 'equals')">-->
+<!--                </p-dropdown>-->
+<!--                <p-multiSelect *ngSwitchCase="'quantidadeFilmes'" defaultLabel="All Colors"-->
+<!--                               (onChange)="dt.filter($event.value, col.field, 'in')">-->
+<!--                </p-multiSelect>-->
+<!--                <input *ngSwitchCase="'price'" pInputText type="text" placeholder="Custom - Greater Than"-->
+<!--                       (input)="dt.filter($event.target.value, col.field, 'custom')">-->
+              </th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-estudio let-columns="columns">
-            <tr [class.zoom]="estudio"
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [class.zoom]="rowData"
                 [style.fontSize.px]="20"
-                *ngIf="estudio">
-              <th scope="row">{{estudio.id}}</th>
-              <td>{{estudio.nome}}</td>
-              <td>{{estudio.pais}}</td>
-              <td>{{estudio.quantidadeFilmes}}</td>
+                *ngIf="rowData" [pSelectableRow]="estudioList">
+              <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+              </td>
+<!--              <th scope="row">{{estudio.id}}</th>-->
+<!--              <td>{{estudio.nome}}</td>-->
+<!--              <td>{{estudio.pais}}</td>-->
+<!--              <td>{{estudio.quantidadeFilmes}}</td>-->
               <td>
-                <button (click)="editar(estudio)">Editar</button>
+                <button (click)="editar(rowData)">Editar</button>
 
                 <button [routerLink]="'/estudio-form'"
-                        [queryParams]="{id: estudio.id}">
+                        [queryParams]="{id: rowData.id}">
                   Editar Por Link
                 </button>
 
-                <button (click)="excluir(estudio)">Excluir</button>
+                <button (click)="excluir(rowData)">Excluir</button>
               </td>
             </tr>
           </ng-template>

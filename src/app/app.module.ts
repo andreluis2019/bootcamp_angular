@@ -24,6 +24,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
 import {DialogModule} from 'primeng/dialog';
 import {TableModule} from 'primeng/table';
+import {SliderModule} from 'primeng/primeng';
 
 registerLocaleData(localePt, 'pt');
 
@@ -52,7 +53,8 @@ registerLocaleData(localePt, 'pt');
     CalendarModule,
     DropdownModule,
     DialogModule,
-    TableModule
+    TableModule,
+    SliderModule
   ],
   providers: [
     {
